@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XDash sign-in</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px;
+         background: #111; color: #eee; font: 17px -apple-system, system-ui, sans-serif; text-align: center; }
+  a { color: #6aa8ff; }
+</style>
+</head>
+<body>
+<p id="message">Returning to XDash…</p>
+<script>
+  // Tesla sends you here after sign-in. Pass the one-time code back to the app, which holds the
+  // PKCE verifier needed to use it; the code is worthless on its own.
+  const target = "xdash://auth" + window.location.search;
+  window.location.replace(target);
+  const link = document.createElement("a");
+  link.href = target;
+  link.textContent = "Open XDash";
+  const message = document.getElementById("message");
+  message.textContent = "If XDash didn't open, tap: ";
+  message.appendChild(link);
+</script>
+</body>
+</html>
